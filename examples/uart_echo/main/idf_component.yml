@@ -1,4 +1,0 @@
-dependencies:
-  bsp_yourboard:
-    git: "https://github.com/vanshgargabes/bsp_yourboard"
-    version: "v1.1.0"
