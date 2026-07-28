@@ -1,5 +1,5 @@
 idf_component_register(
-    SRCS "bsp_gpio.c"
+    SRCS "bsp_gpio.c" "bsp_uart.c"
     INCLUDE_DIRS "include"
-    REQUIRES esp_driver_gpio
+    REQUIRES esp_driver_gpio esp_driver_uart
 )
