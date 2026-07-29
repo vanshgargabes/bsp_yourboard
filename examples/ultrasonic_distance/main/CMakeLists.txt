@@ -1,0 +1,1 @@
+idf_component_register(SRCS "ultrasonic_distance.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
