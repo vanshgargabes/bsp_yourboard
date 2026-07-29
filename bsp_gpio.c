@@ -1,5 +1,9 @@
 #include "bsp_gpio.h"
 
+#define BSP_MAX_GPIO_PINS  40
+
+static uint8_t gpio_state[BSP_MAX_GPIO_PINS] = {0};
+
 void BSP_GPIO_Init(gpio_num_t pin, bsp_gpio_mode_t mode)
 {
     gpio_config_t io_conf = {
@@ -31,8 +35,22 @@ void BSP_GPIO_Init(gpio_num_t pin, bsp_gpio_mode_t mode)
     }
 
     gpio_config(&io_conf);
+    gpio_state[pin] = 0;
 }
 
-void BSP_GPIO_Write(gpio_num_t pin, int level) { gpio_set_level(pin, level); }
-int  BSP_GPIO_Read(gpio_num_t pin)              { return gpio_get_level(pin); }
-void BSP_GPIO_Toggle(gpio_num_t pin)            { gpio_set_level(pin, !gpio_get_level(pin)); }
+void BSP_GPIO_Write(gpio_num_t pin, int level)
+{
+    gpio_set_level(pin, level);
+    gpio_state[pin] = level ? 1 : 0;
+}
+
+int BSP_GPIO_Read(gpio_num_t pin)
+{
+    return gpio_get_level(pin);
+}
+
+void BSP_GPIO_Toggle(gpio_num_t pin)
+{
+    gpio_state[pin] = !gpio_state[pin];
+    gpio_set_level(pin, gpio_state[pin]);
+}
