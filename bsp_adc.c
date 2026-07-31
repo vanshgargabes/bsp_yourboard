@@ -12,19 +12,18 @@ void BSP_ADC_Init(bsp_adc_channel_t *ctx, adc_unit_t unit, adc_channel_t channel
 
     adc_oneshot_chan_cfg_t chan_config = {
         .bitwidth = ADC_BITWIDTH_DEFAULT,
-        .atten = ADC_ATTEN_DB_12,   // ~0-3.3V input range
+        .atten = ADC_ATTEN_DB_12,
     };
     adc_oneshot_config_channel(ctx->adc_handle, channel, &chan_config);
 
-    // Try to set up calibration for millivolt conversion
-    adc_cali_curve_fitting_config_t cali_config = {
+    // ESP32 (original) only supports line-fitting calibration, not curve-fitting
+    adc_cali_line_fitting_config_t cali_config = {
         .unit_id = unit,
-        .chan = channel,
         .atten = ADC_ATTEN_DB_12,
         .bitwidth = ADC_BITWIDTH_DEFAULT,
     };
 
-    esp_err_t ret = adc_cali_create_scheme_curve_fitting(&cali_config, &ctx->cali_handle);
+    esp_err_t ret = adc_cali_create_scheme_line_fitting(&cali_config, &ctx->cali_handle);
     ctx->cali_enabled = (ret == ESP_OK);
 
     if (!ctx->cali_enabled) {
@@ -49,5 +48,5 @@ int BSP_ADC_ReadMillivolts(bsp_adc_channel_t *ctx, adc_channel_t channel)
         return voltage_mv;
     }
 
-    return -1;  // calibration unavailable
+    return -1;
 }
