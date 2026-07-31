@@ -1,0 +1,1 @@
+idf_component_register(SRCS "adc_reading.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
