@@ -1,0 +1,1 @@
+idf_component_register(SRCS "buzzer_alert.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
