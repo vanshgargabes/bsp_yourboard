@@ -1,9 +1,3 @@
-#include <stdio.h>
-
-void app_main(void)
-{
-
-}
 #include "bsp_gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -13,7 +7,6 @@ void app_main(void)
 void app_main(void)
 {
     BSP_GPIO_Init(BUZZER_PIN, BSP_GPIO_MODE_OUTPUT);
-
     while (1) {
         // Beep pattern: on 200ms, off 800ms
         BSP_GPIO_Write(BUZZER_PIN, 1);
