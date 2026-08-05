@@ -1,0 +1,1 @@
+idf_component_register(SRCS "sound_ky037.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
