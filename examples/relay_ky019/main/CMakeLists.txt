@@ -1,0 +1,1 @@
+idf_component_register(SRCS "relay_ky019.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
