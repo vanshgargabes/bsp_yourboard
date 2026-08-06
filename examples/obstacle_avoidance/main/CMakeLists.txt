@@ -1,0 +1,1 @@
+idf_component_register(SRCS "obstacle_avoidance.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)

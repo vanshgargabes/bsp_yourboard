@@ -1,1 +1,0 @@
-idf_component_register(SRCS "joystick_ky023.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
