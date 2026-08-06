@@ -1,0 +1,1 @@
+idf_component_register(SRCS "temp_digital.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
