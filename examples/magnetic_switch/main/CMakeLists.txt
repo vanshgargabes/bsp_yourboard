@@ -1,0 +1,1 @@
+idf_component_register(SRCS "magnetic_switch.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
