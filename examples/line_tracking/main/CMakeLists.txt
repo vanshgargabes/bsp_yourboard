@@ -1,0 +1,1 @@
+idf_component_register(SRCS "line_tracking.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)

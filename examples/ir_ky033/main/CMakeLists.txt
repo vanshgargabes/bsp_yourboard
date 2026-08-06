@@ -1,1 +1,0 @@
-idf_component_register(SRCS "ir_ky033.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
