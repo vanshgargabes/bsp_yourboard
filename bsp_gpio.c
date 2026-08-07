@@ -3,6 +3,7 @@
 #define BSP_MAX_GPIO_PINS  40
 
 static uint8_t gpio_state[BSP_MAX_GPIO_PINS] = {0};
+static bool isr_service_installed = false;
 
 void BSP_GPIO_Init(gpio_num_t pin, bsp_gpio_mode_t mode)
 {
@@ -53,4 +54,16 @@ void BSP_GPIO_Toggle(gpio_num_t pin)
 {
     gpio_state[pin] = !gpio_state[pin];
     gpio_set_level(pin, gpio_state[pin]);
+}
+
+void BSP_GPIO_AttachInterrupt(gpio_num_t pin, gpio_int_type_t edge, bsp_gpio_isr_callback_t callback, void *arg)
+{
+    if (!isr_service_installed) {
+        gpio_install_isr_service(0);
+        isr_service_installed = true;
+    }
+
+    gpio_set_intr_type(pin, edge);
+    gpio_isr_handler_add(pin, callback, arg);
+    gpio_intr_enable(pin);
 }
