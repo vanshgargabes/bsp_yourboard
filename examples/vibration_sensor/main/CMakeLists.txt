@@ -1,0 +1,1 @@
+idf_component_register(SRCS "vibration_sensor.c" INCLUDE_DIRS "." REQUIRES bsp_yourboard)
